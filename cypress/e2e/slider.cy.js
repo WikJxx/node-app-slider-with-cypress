@@ -75,3 +75,28 @@ describe('Gallery on different devices', () => {
   });
 });
 
+describe('Swiper Gallery Visibility Test', function () {
+  it('Checks if the gallery is displayed correctly', function () {
+    // Krok 1: Otwórz stronę z galerią
+    cy.visit('http://localhost:3000');
+
+    // Krok 2: Sprawdź, czy główny kontener galerii jest widoczny
+    cy.get('.swiper').should('be.visible');
+
+    // Krok 3: Sprawdź, czy trzy slajdy w galerii są widoczne
+    cy.get('.swiper-slide').should('have.length', 3);
+
+    // Krok 4: Sprawdź, czy przyciski nawigacji są obecne i klikalne
+    cy.get('.swiper-button-next').should('be.visible').and('not.be.disabled');
+    cy.get('.swiper-button-prev').should('be.visible').and('not.be.disabled');
+
+    // Dodatkowo sprawdzamy, czy przejście do następnego slajdu działa
+    cy.get('.swiper-button-next').click();
+    cy.wait(1000); // Poczekaj chwilę na zakończenie animacji
+    cy.get('.swiper').should('be.visible');
+
+    // Sprawdzenie, czy przycisk poprzedni działa
+    cy.get('.swiper-button-prev').click();
+    cy.get('.swiper-slide-active').should('be.visible');
+  });
+});

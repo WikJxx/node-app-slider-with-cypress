@@ -10,6 +10,7 @@
   "author": "Adrian Widlak",
   "license": "ISC",
   "dependencies": {
+    "@hotjar/browser": "^1.0.9",
     "cypress": "^13.7.0",
     "express": "^4.18.3",
     "swiper": "^11.0.7"
